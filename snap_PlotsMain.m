@@ -14,11 +14,13 @@ nettype = 'flux'; % flux or ignition
 baseline = 500; % how many milliseconds after trial start to baseline at? 
 % e.g. 500 is -3 to -2.5
 
-fpath = ['./data/' nettype '/Ksyn_' num2str(0) '/'];
+fpath = ['../data/' nettype '/Ksyn_' num2str(0) '/'];
 files = dir([fpath,'*.mat']);
 
+files(strncmp({files.name}, '.', 1)) = []; %remove files and dir starting with '.'
+
 % Loading for pre-allocation
-load([fpath files(1).name],'EEG','incFRs','decFRs','tx',...
+load([fpath files(2).name],'EEG','incFRs','decFRs','tx',...
     'incSpks','decSpks','nonSpks','time','time_fr','taus')
 
 decFRs_ga = nan(length(decFRs),length(files),3);
@@ -35,8 +37,9 @@ EEG_ga = nan(length(EEG),length(files),3);
 tx_ga = nan(length(f),length(files),3);
 
 
-fpath = ['./data/' nettype '/Ksyn_' num2str(0) '/'];
+fpath = ['../data/' nettype '/Ksyn_' num2str(0) '/'];
 files = dir([fpath,'*.mat']);
+files(strncmp({files.name}, '.', 1)) = []; %remove files and dir starting with '.'
 
 
 nInc = nan(length(files),3);
@@ -98,8 +101,10 @@ end
 
 
 % Add in the Ksyn 0.5
-fpath = ['./data/' nettype '/Ksyn_' num2str(0.5) '/'];
+fpath = ['../data/' nettype '/Ksyn_' num2str(0.5) '/'];
 files = dir([fpath,'*.mat']);
+files(strncmp({files.name}, '.', 1)) = []; %remove files and dir starting with '.'
+
 
 for ii=1:length(files)
     fname = files(ii).name;
@@ -138,8 +143,10 @@ for ii=1:length(files)
 end
 
 % Add in the Ksyn 1
-fpath = ['./data/' nettype '/Ksyn_' num2str(1) '/'];
+fpath = ['../data/' nettype '/Ksyn_' num2str(1) '/'];
 files = dir([fpath,'*.mat']);
+files(strncmp({files.name}, '.', 1)) = []; %remove files and dir starting with '.'
+
 
 for ii=1:length(files)
     fname = files(ii).name;
@@ -283,8 +290,8 @@ xlim([-3 0])
 
 % if strcmp(nettype,'flux'),ylim([-6 26]),end
 % plot_signal_ci(time/1000,EEG_ga' * 500,'g')
-saveas(gcf,['figures/' nettype '_FRs_both.svg'])
-saveas(gcf,['figures/' nettype '_FRs_both.png'])
+% saveas(gcf,['figures/' nettype '_FRs_both.svg'])
+% saveas(gcf,['figures/' nettype '_FRs_both.png'])
 
 
 %% Increasing & Decreasing FRs Separately
@@ -1109,7 +1116,7 @@ nettype = 'flux'; % flux or ignition
 baseline = 500; % how many milliseconds after trial start to baseline at? 
 % e.g. 500 is -3 to -2.5
 
-fpath = ['./data/' nettype '/Ksyn_' num2str(0.5) '/'];
+fpath = ['../data/' nettype '/Ksyn_' num2str(0.5) '/'];
 files = dir([fpath,'*.mat']);
 
 % Loading for pre-allocation

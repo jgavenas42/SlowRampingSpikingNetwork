@@ -7,10 +7,11 @@ addpath(genpath('./utils'))
 %% Initialize parameters
 
 nettype = 'flux';
-savepath = ['data/2clusters/' nettype];
+% savepath = ['data/2clusters/' nettype];
+savepath = ['../data/Ksyn_cf/' nettype];
 
 N = 400;
-Nclusters = 2;
+Nclusters = 4;
 Ksyns = 0:0.1:0.5;
 
 
@@ -20,7 +21,9 @@ noisescale = 0.5;
 Ree_params = readtable('REE_params.csv');
 
 rng_list = Ree_params.RNG;
-Ree_list = Ree_params.Ree_flux * 0.6;
+% Ree_list = Ree_params.Ree_flux * 0.6; % for 2 clusters
+Ree_list = Ree_params.Ree_flux; % for 4 clusters
+
 % Ree_list = Ree_params.Ree_ignite;
 
 Ntrials = 100;

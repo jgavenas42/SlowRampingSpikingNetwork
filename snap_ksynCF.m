@@ -14,8 +14,8 @@ nettype = 'flux'; % flux or ignition
 baseline = 500; % how many milliseconds after trial start to baseline at? 
 % e.g. 500 is -3 to -2.5
 
-% fpath = ['./data/Ksyn_cf/' nettype '/'];
-fpath = ['./data/2clusters/' nettype '/']; % 2, 3, or 5 clusters
+fpath = ['../data/Ksyn_cf/' nettype '/']; % 4 clusters
+% fpath = ['../data/2clusters/' nettype '/']; % 2, 3, or 5 clusters
 
 files = dir([fpath,'*.mat']);
 
