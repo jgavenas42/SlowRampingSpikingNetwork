@@ -177,24 +177,32 @@ nInc = nanmean(nInc,1);
 nDec = nanmean(nDec,1);
 nNon = nanmean(nNon,1);
 
+%% Save only the variables that we want for easy reproducibility
+
+save('../data/simFRs.mat','acfs_all','acfs_clust','ACFs_clust','ACFs_neuron','baseline',...
+    'decACFs','decACFs_clust','decFRs','decFRs_ga','decSpks','decSpks_ga','decTaus',...
+    'EEG','EEG_ga','nettype',...
+    'incACFs','incACFs_clust','incFRs','incFRs_ga','incSpks','incSpks_ga','incTaus',...
+    'nDec','nInc','nNon','nonSpks','nonSpks_ga','taus','time','time_fr','tx','tx_ga','type')
+
 %% Increasing & Decreasing Neuron FRs
 figure
 hold on
 
 % Plot the Ksyn = 0
-p1K0 = plot_signal_ci(time/1000,incSpks_ga(:,:,1)','r-');
-p2K0 = plot_signal_ci(time/1000,decSpks_ga(:,:,1)','b-');
+p1K0 = plot_signal_ci(time/1000,incSpks_ga(:,:,1)','Color','r');
+p2K0 = plot_signal_ci(time/1000,decSpks_ga(:,:,1)','Color','b');
 
 % Plot Ksyn = 0.5
-p1K5 = plot_signal_ci(time/1000,incSpks_ga(:,:,2)','r--');
-p2K5 = plot_signal_ci(time/1000,decSpks_ga(:,:,2)','b--');
+p1K5 = plot_signal_ci(time/1000,incSpks_ga(:,:,2)','Color','r');
+p2K5 = plot_signal_ci(time/1000,decSpks_ga(:,:,2)','Color','b');
 set(p1K5,'LineStyle','--')
 set(p2K5,'LineStyle','--')
 
 
 % Plot Ksyn = 1
-p1K1 = plot_signal_ci(time/1000,incSpks_ga(:,:,3)','r:');
-p2K1 = plot_signal_ci(time/1000,decSpks_ga(:,:,3)','b:');
+p1K1 = plot_signal_ci(time/1000,incSpks_ga(:,:,3)','r');
+p2K1 = plot_signal_ci(time/1000,decSpks_ga(:,:,3)','b');
 set(p1K1,'LineStyle',':')
 set(p2K1,'LineStyle',':')
 
@@ -225,7 +233,9 @@ ymax = max(incSpks_ga,[],'all');
 % Increasing neurons
 p1K0 = plot_signal_ci(time/1000,incSpks_ga(:,:,1)','Color',[1 0.3 0.2]); % Ksyn = 0
 p1K5 = plot_signal_ci(time/1000,incSpks_ga(:,:,2)','Color',[1 0.3 0.2]); % Ksyn = 0.5
-set(p1K5,'LineStyle','--')
+set(p1K0,'LineStyle',':')
+set(p1K5,'LineStyle','-')
+
 % p1K1 = plot_signal_ci(time/1000,incSpks_ga(:,:,3)','r:'); % Ksyn = 1
 % set(p1K1,'LineStyle',':')
 
@@ -255,7 +265,9 @@ yl = ylim;
 yyaxis right
 p2K0 = plot_signal_ci(time/1000,decSpks_ga(:,:,1)','Color',[0 0.5 1]); % Ksyn = 0
 p2K5 = plot_signal_ci(time/1000,decSpks_ga(:,:,2)','Color',[0 0.5 1]); % Ksyn = 0.5
-set(p2K5,'LineStyle','--')
+set(p2K0,'LineStyle',':')
+set(p2K5,'LineStyle','-')
+
 % p2K1 = plot_signal_ci(time/1000,decSpks_ga(:,:,3)','b:'); % Ksyn = 1
 % set(p2K1,'LineStyle',':')
 
@@ -392,8 +404,8 @@ ylabel('Voltage (mV)','FontSize',20)
 ylim([-0.03,0.005])
 % title('RP in Slow Synapse Nets','FontSize',24)
 % plot_signal_ci(time/1000,EEG_ga' * 500,'g')
-saveas(gcf,['figures/' nettype '_EEG.svg'])
-saveas(gcf,['figures/' nettype '_EEG.png'])
+% saveas(gcf,['figures/' nettype '_EEG.svg'])
+% saveas(gcf,['figures/' nettype '_EEG.png'])
 
 
 %% TX Distribution
@@ -415,8 +427,8 @@ grid off
 xlabel('Threshold-Crossing Times','FontSize',20)
 ylabel('Density','FontSize',20)
 % title('Threshold-Crossing Distribution','FontSize',24)
-saveas(gcf,['figures/' nettype '_TX.svg'])
-saveas(gcf,['figures/' nettype '_TX.png'])
+% saveas(gcf,['figures/' nettype '_TX.svg'])
+% saveas(gcf,['figures/' nettype '_TX.png'])
 
 
 
@@ -498,7 +510,7 @@ t(2).FontSize = 14;
 
 % legend(labels)
 
-saveas(gcf,['figures/' nettype '_typeFreqs.svg'])
+% saveas(gcf,['figures/' nettype '_typeFreqs.svg'])
 
 
 %% Taus Comparison
@@ -545,7 +557,7 @@ xlabel('Autocorrelation \tau','FontSize',16)
 ylabel('Proportion','FontSize',16)
 
 
-saveas(gcf,['figures/' nettype '_' num2str(ksyn2use) '_histTaus.svg'])
+% saveas(gcf,['figures/' nettype '_' num2str(ksyn2use) '_histTaus.svg'])
 
 
 %% Autocorrelation Neurons
@@ -611,8 +623,8 @@ xlabel('Time Lag (ms)','FontSize',20)
 
 % if strcmp(nettype,'flux'),ylim([-6 26]),end
 % plot_signal_ci(time/1000,EEG_ga' * 500,'g')
-saveas(gcf,['figures/' nettype '_ACFs_neurons.svg'])
-saveas(gcf,['figures/' nettype '_ACFs_neurons.png'])
+% saveas(gcf,['figures/' nettype '_ACFs_neurons.svg'])
+% saveas(gcf,['figures/' nettype '_ACFs_neurons.png'])
 
 %% Autocorrelation Neurons slow ramping only
 figure('Position',[0 0 350 320])
@@ -676,8 +688,8 @@ xlabel('Time Lag (ms)','FontSize',20)
 
 % if strcmp(nettype,'flux'),ylim([-6 26]),end
 % plot_signal_ci(time/1000,EEG_ga' * 500,'g')
-saveas(gcf,['figures/' nettype '_ACFs_neurons_slowramponly.svg'])
-saveas(gcf,['figures/' nettype '_ACFs_neurons_slowramponly.png'])
+% saveas(gcf,['figures/' nettype '_ACFs_neurons_slowramponly.svg'])
+% saveas(gcf,['figures/' nettype '_ACFs_neurons_slowramponly.png'])
 
 
 %% Autocorrelation Clusters
@@ -951,8 +963,8 @@ xlabel('Time Lag (ms)','FontSize',20)
 
 % if strcmp(nettype,'flux'),ylim([-6 26]),end
 % plot_signal_ci(time/1000,EEG_ga' * 500,'g')
-saveas(gcf,['figures/' nettype '_ACFs.svg'])
-saveas(gcf,['figures/' nettype '_ACFs.png'])
+% saveas(gcf,['figures/' nettype '_ACFs.svg'])
+% saveas(gcf,['figures/' nettype '_ACFs.png'])
 
 %% Autocorrelation Neurons Only
 figure('Position',[0 0 400 320])
@@ -1106,8 +1118,8 @@ xlabel('Time Lag (ms)','FontSize',20)
 
 % if strcmp(nettype,'flux'),ylim([-6 26]),end
 % plot_signal_ci(time/1000,EEG_ga' * 500,'g')
-saveas(gcf,['figures/' nettype '_ACFs_flip.svg'])
-saveas(gcf,['figures/' nettype '_ACFs_flip.png'])
+% saveas(gcf,['figures/' nettype '_ACFs_flip.svg'])
+% saveas(gcf,['figures/' nettype '_ACFs_flip.png'])
 
 %% Ramping Onsets
 
@@ -1180,7 +1192,7 @@ xlabel('Ramping Onset (s)','FontSize',20)
 xticklabels({'-3', '-2', '-1', '0'})
 
 
-saveas(gcf,['figures/ramponset_sim.svg'])
-saveas(gcf,['figures/ramponset_sim.png'])
+% saveas(gcf,['figures/ramponset_sim.svg'])
+% saveas(gcf,['figures/ramponset_sim.png'])
     
     
