@@ -15,9 +15,9 @@ Figure 2 & Figure S1 -- temporal characteristics of spontaneous fluctuations
 2. Code for generating figures is in the python notebook snap_fluctuationanalysis.ipynb and below the calculation of stats in the MATLAB script snap_fluxcharacteristics.m
 
 Figure 3A, 3D left, 4C top, S2B, S2C -- comparison of slow ramping in networks with 100% fast and 50% slow synapses
-1. Make sure you have the data downloaded. These data are in the folder data/flux
+1. Make sure you have the data file simFRs.mat downloaded (located in the main folder). Load that into matlab.
 	- Alternatively, you can simulate data using the MATLAB script snap_fluxSim.m, just need to change some parameters including the Ksyns to 0, 0.5, and 1 from just 0 and 0.5.
-2. Run the MATLAB script snap_PlotsMain.m 
+2. Run the MATLAB script snap_PlotsMain.m (but not the top, just load the data into matlab and then run the plotting functions)
 3. The first sections of this script pertain to plotting the threshold-aligned results from simulated data.
 
 Figure 3B, 4C bottom -- comparison of ramping in networks with varying synaptic ratios
