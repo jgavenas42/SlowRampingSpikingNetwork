@@ -20,14 +20,24 @@ Figure 3A, 3D left, 4C top, S2B, S2C -- comparison of slow ramping in networks w
 2. Run the MATLAB script snap_PlotsMain.m (but not the top, just load the data into matlab and then run the plotting functions)
 3. The first sections of this script pertain to plotting the threshold-aligned results from simulated data.
 
-Figure 3B, 4C bottom -- comparison of ramping in networks with varying synaptic ratios
-1. Make sure you have the data downloaded. These data are in the folder data/Ksyn_cf
+Figure 3B, 4C bottom, S2B -- comparison of ramping in networks with varying synaptic ratios
+1. Make sure you have the data file KsynCF.mat downloaded (located in the main folder). Load that into matlab.
 	- Alternatively, you can simulate data using the MATLAB script snap_KsynSim.m
-2. Run the MATLAB script snap_ksynCF.m
+2. Run the MATLAB script snap_ksynCF.m (the top part is for parsing over simulated data, if loading from KsynCF.mat then just go straight to plotting).
+
+Figure 4A left and 4B left, S4A-B, S4C left
+1. make sure you have the data files in the folders Ksyn_0 and Ksyn_0.5 downloaded (these are too large for github so download from the Nat Comms source data file or contact us)
+	- alternatively, simulate data using the matlab script snap_fluxSim.m, just need to change some parameters including the Ksyns to 0, 0.5, and 1 from just 0 and 0.5.
+2. Run the python notebook snap_decoding.ipynb to obtain decoding results. The top of that notebook is dedicated to analysis of the empirical data so use the bottom half for analyzing the simulated data.
+3. To recreate results, 
 
 Figure 5B -- pairwise correlations in neurons 
 1. Make sure you have the data downloaded, they are in the folder pwCorr/flux/smoothedCorr_norm
-2. Run the python notebook snap_pwCorrLME.ipynb
+   	- can exctract from the other data using the script snap_pwCorr.m
+3. Run the python notebook snap_pwCorrLME.ipynb
+
+Figure S2A -- showing the relation between autocorrelation and ramping activity
+1. run the python notebook snap_autocorrTX.ipynb and it will simulate and plot figures S2A left and right.
 
 Figure S4D -- comparison of temporal generalization with ramping from "ground truth" slow ramping neurons.
 1. To simulate and plot these data you should use the python notebook snap_poissonRamp.ipynb
